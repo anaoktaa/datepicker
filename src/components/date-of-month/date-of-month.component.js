@@ -4,7 +4,6 @@ import { getDate, isSunday } from 'date-fns';
 import { DaysNameContainer, DaysName } from './date-of-month.styles';
 import { MonthDateArray } from './date-of-month.utils';
 const DateOfMonth = ({ locale, initialDate }) => {
-
     const monthDateList = MonthDateArray(initialDate, locale);
 
     console.log("MONTHDATELIST", monthDateList);

@@ -46,8 +46,6 @@ export const MonthDateArray = (initialDate, locale) => {
                 objOfDate.style = 'style__4';
             }
 
-           
-
             weekDateList.push(objOfDate);
             startDate = addDays(startDate, 1);
         }
