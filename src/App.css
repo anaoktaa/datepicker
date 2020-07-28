@@ -41,3 +41,16 @@
 .datepicker-app-container {
   position: relative;
 }
+
+.show-panel {
+  visibility: hidden;
+  transform: translateY(-50px);
+  transition: all .5s;
+  opacity: 0;
+}
+
+.slide-panel {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(-30px);
+}

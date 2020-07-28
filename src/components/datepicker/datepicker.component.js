@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { addMonths, format, subMonths } from 'date-fns';
+import { CSSTransition } from "react-transition-group";
 
 import { DatepickerContainer, MonthContainer } from './datepicker.styles';
 import HeaderMonth from '../header-month/header-month.component';
@@ -43,10 +44,18 @@ const Datepicker = ({ initialDate, locale, daysLocale }) => {
                 <WeekdaysName
                         daysLocale={daysLocale}
                 />
-                <DateOfMonth
-                    locale={locale}
-                    initialDate={currentDate}
-                />
+
+                <CSSTransition
+                    in={appearLeft || appearRight}
+                    timeout={100}
+                    classNames={appearLeft? 'list-transition-left': 'list-transition-right'}
+                    onEntered={handleEntered}
+                >
+                    <DateOfMonth
+                        locale={locale}
+                        initialDate={currentDate}
+                    />
+                </CSSTransition>
             </MonthContainer>
             <MonthContainer>
                 <HeaderMonth
@@ -60,11 +69,17 @@ const Datepicker = ({ initialDate, locale, daysLocale }) => {
                 <WeekdaysName
                     daysLocale={daysLocale}
                 />
-                <DateOfMonth
-                    locale={locale}
-                    initialDate={addMonths(currentDate, 1)}
-                />
-
+                <CSSTransition
+                    in={appearLeft || appearRight}
+                    timeout={100}
+                    classNames={appearLeft? 'list-transition-left': 'list-transition-right'}
+                    onEntered={handleEntered}
+                >
+                    <DateOfMonth
+                        locale={locale}
+                        initialDate={addMonths(currentDate, 1)}
+                    />
+                </CSSTransition>
             </MonthContainer>
         </DatepickerContainer>
     )

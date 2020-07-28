@@ -2,9 +2,9 @@ import React from 'react';
 
 import { InputContainer, DateText } from './input.styles';
 
-const Input = () => {
+const Input = ({ handleClick }) => {
     return (
-        <InputContainer>
+        <InputContainer onClick={handleClick}>
             <DateText>
                 25 Agustus 2020
             </DateText>
