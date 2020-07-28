@@ -22,6 +22,7 @@ const Style1 = css`
     opacity: 0;
     ${DaysTextStyle};
     color: transparent;
+    pointer-events: none;
 `;
 
 const Style2 = css`

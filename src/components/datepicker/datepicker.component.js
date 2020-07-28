@@ -9,7 +9,8 @@ import DateOfMonth from '../date-of-month/date-of-month.component';
 
 import './datepicker.styles.css';
 
-const Datepicker = ({ initialDate, locale, daysLocale }) => {
+const Datepicker = ({ initialDate, locale, daysLocale, onPickDate, selectedDate }) => {
+
     const [ currentDate, setCurrentDate ] = useState(initialDate);
 
     const [ appearLeft, setAppearLeft ] = useState(false);
@@ -28,6 +29,10 @@ const Datepicker = ({ initialDate, locale, daysLocale }) => {
     const handleEntered = () => {
         setAppearLeft(false);
         setAppearRight(false);
+    }
+
+    const handlePickDate = (date) => {
+        onPickDate(date);
     }
 
     return (
@@ -54,6 +59,8 @@ const Datepicker = ({ initialDate, locale, daysLocale }) => {
                     <DateOfMonth
                         locale={locale}
                         initialDate={currentDate}
+                        handlePickDate={handlePickDate}
+                        selectedDate={selectedDate}
                     />
                 </CSSTransition>
             </MonthContainer>
@@ -78,6 +85,8 @@ const Datepicker = ({ initialDate, locale, daysLocale }) => {
                     <DateOfMonth
                         locale={locale}
                         initialDate={addMonths(currentDate, 1)}
+                        handlePickDate={handlePickDate}
+                        selectedDate={selectedDate}
                     />
                 </CSSTransition>
             </MonthContainer>

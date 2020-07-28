@@ -1,8 +1,8 @@
-import { addDays, format, startOfMonth, isBefore, isAfter,
+import { addDays, format, startOfMonth, isBefore, isAfter, subDays,
          endOfMonth, startOfWeek, endOfWeek, isSameDay, isSameMonth } from 'date-fns';
 
-export const MonthDateArray = (initialDate, locale) => {
-    const today = new Date();
+export const MonthDateArray = (initialDate, locale, selectedDate) => {
+    const today = subDays(new Date(), 1);
     const monthStart = startOfMonth(initialDate);
     const monthEnd = endOfMonth(initialDate);
     const endDate = endOfWeek(monthEnd);
@@ -28,21 +28,19 @@ export const MonthDateArray = (initialDate, locale) => {
                 objOfDate.style = 'style__2';
             }  
 
-            /*is Same with current date */
-            if (isSameDay(new Date(formattedDate), new Date(today)) && isSameMonth(new Date(formattedDate), new Date(monthEnd))) {
+            /*is Same with current date */        
+            if (isSameDay(new Date(formattedDate), new Date(selectedDate)) && isSameMonth(new Date(formattedDate), new Date(monthEnd))) {
                 objOfDate.style = 'style__3';
             }
-            /*same current date but differen current month */
-            else if (isSameDay(new Date(formattedDate), new Date(today))) {
-                objOfDate.style = 'style__1';
-            }
+       
 
              /*is after current month */
             if (isAfter(new Date(formattedDate), new Date(monthEnd))) {
                 objOfDate.style = 'style__1';
             }
             /*is after current date */
-            else if (isAfter(new Date(formattedDate), new Date(today)) && isSameMonth(new Date(formattedDate), new Date(monthEnd))) {
+            else if (isAfter(new Date(formattedDate), new Date(today)) && isSameMonth(new Date(formattedDate), new Date(monthEnd)) && 
+                !isSameDay(new Date(formattedDate), new Date(selectedDate)) && isSameMonth(new Date(formattedDate), new Date(monthEnd))) {
                 objOfDate.style = 'style__4';
             }
 

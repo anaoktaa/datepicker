@@ -2,11 +2,11 @@ import React from 'react';
 
 import { InputContainer, DateText } from './input.styles';
 
-const Input = ({ handleClick }) => {
+const Input = ({ handleClick, value }) => {
     return (
         <InputContainer onClick={handleClick}>
             <DateText>
-                25 Agustus 2020
+                {value}
             </DateText>
             <i class="far fa-calendar-alt" style={{color: '#5a5a5a', fontSize: '17px'}}></i>
         </InputContainer>
