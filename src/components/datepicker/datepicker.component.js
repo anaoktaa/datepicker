@@ -21,6 +21,7 @@ const Datepicker = ({ initialDate, locale, daysLocale }) => {
                 />
                 <DateOfMonth
                     locale={locale}
+                    initialDate={initialDate}
                 />
       
           
@@ -32,6 +33,10 @@ const Datepicker = ({ initialDate, locale, daysLocale }) => {
                 />
                 <WeekdaysName
                     daysLocale={daysLocale}
+                />
+                <DateOfMonth
+                    locale={locale}
+                    initialDate={addMonths(initialDate, 1)}
                 />
 
             </MonthContainer>

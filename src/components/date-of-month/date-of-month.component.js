@@ -1,28 +1,13 @@
 import React from 'react';
-import { addDays, format, startOfMonth, endOfMonth, startOfWeek,
-         endOfWeek, getDate } from 'date-fns';
+import { getDate, isSunday } from 'date-fns';
 
-import { DaysNameContainer, DaysName, RedDaysName } from './date-of-month.styles';
-const DateOfMonth = ({ locale }) => {
+import { DaysNameContainer, DaysName } from './date-of-month.styles';
+import { MonthDateArray } from './date-of-month.utils';
+const DateOfMonth = ({ locale, initialDate }) => {
 
-    const monthStart = startOfMonth(new Date());
-    const monthEnd = endOfMonth(new Date());
-    const endDate = endOfWeek(monthEnd);
-    let startDate = startOfWeek(monthStart);
+    const monthDateList = MonthDateArray(initialDate, locale);
 
-    const monthDateList = [];
-    while (startDate <= endDate) {
-        const weekDateList = [];
-        for (let i = 0; i < 7; i++) {
-            const formattedDate = format(startDate, 'dd-MMMM-yyyy', { locale : locale });
-            weekDateList.push(formattedDate);
-            startDate = addDays(startDate, 1);
-
-            //Compare date
-            //if before adding stylee
-        }
-        monthDateList.push(weekDateList);
-    }
+    console.log("MONTHDATELIST", monthDateList);
     return (
         <div>
            {
@@ -31,8 +16,10 @@ const DateOfMonth = ({ locale }) => {
                         <DaysNameContainer>
                             {
                                 week.map((day) => {
+                         
+                                    console.log(isSunday(new Date(day.date)))
                                     return (
-                                        <DaysName>{getDate(new Date(day))}</DaysName>
+                                        <DaysName key={day} isHoliday={isSunday(new Date(day.date))} dateStyle={day.style}>{getDate(new Date(day.date))}</DaysName>
                                     )
                                 })
                             }

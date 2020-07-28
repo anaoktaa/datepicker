@@ -11,11 +11,11 @@ export const DatepickerContainer = styled.div`
     align-items: flex-start;
     justify-content: space-between;
     box-sizing: border-box;
-    width: 760px;
+    width: 820px;
 `;
 
 export const MonthContainer = styled.div`
-    width: 355px;
+    width: 400px;
     padding: 10px 20px;
     box-sizing: border-box;
 `;
