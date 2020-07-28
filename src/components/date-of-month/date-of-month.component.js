@@ -1,7 +1,8 @@
 import React from 'react';
 import { addDays, format, startOfMonth, endOfMonth, startOfWeek,
-    endOfWeek } from 'date-fns';
+         endOfWeek, getDate } from 'date-fns';
 
+import { DaysNameContainer, DaysName, RedDaysName } from './date-of-month.styles';
 const DateOfMonth = ({ locale }) => {
 
     const monthStart = startOfMonth(new Date());
@@ -22,11 +23,23 @@ const DateOfMonth = ({ locale }) => {
         }
         monthDateList.push(weekDateList);
     }
-
-    console.log("MONTH DATE LIST", monthDateList);
     return (
         <div>
-           jhskjdhjkhsd 
+           {
+               monthDateList.map((week) => {
+                    return (
+                        <DaysNameContainer>
+                            {
+                                week.map((day) => {
+                                    return (
+                                        <DaysName>{getDate(new Date(day))}</DaysName>
+                                    )
+                                })
+                            }
+                        </DaysNameContainer>
+                    )
+               })
+           }
         </div>
     )
 };
