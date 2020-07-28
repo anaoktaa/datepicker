@@ -18,6 +18,7 @@ const DateOfMonth = ({ locale }) => {
             startDate = addDays(startDate, 1);
 
             //Compare date
+            //if before adding stylee
         }
         monthDateList.push(weekDateList);
     }
