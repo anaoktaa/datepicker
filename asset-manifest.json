@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/datepicker/static/css/main.ceb72876.chunk.css",
+    "main.js": "/datepicker/static/js/main.0295209e.chunk.js",
+    "main.js.map": "/datepicker/static/js/main.0295209e.chunk.js.map",
+    "runtime-main.js": "/datepicker/static/js/runtime-main.c60d4208.js",
+    "runtime-main.js.map": "/datepicker/static/js/runtime-main.c60d4208.js.map",
+    "static/js/2.52222564.chunk.js": "/datepicker/static/js/2.52222564.chunk.js",
+    "static/js/2.52222564.chunk.js.map": "/datepicker/static/js/2.52222564.chunk.js.map",
+    "index.html": "/datepicker/index.html",
+    "precache-manifest.1487c6371788566f8a2a857a4a3adb9c.js": "/datepicker/precache-manifest.1487c6371788566f8a2a857a4a3adb9c.js",
+    "service-worker.js": "/datepicker/service-worker.js",
+    "static/css/main.ceb72876.chunk.css.map": "/datepicker/static/css/main.ceb72876.chunk.css.map",
+    "static/js/2.52222564.chunk.js.LICENSE.txt": "/datepicker/static/js/2.52222564.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c60d4208.js",
+    "static/js/2.52222564.chunk.js",
+    "static/css/main.ceb72876.chunk.css",
+    "static/js/main.0295209e.chunk.js"
+  ]
+}
