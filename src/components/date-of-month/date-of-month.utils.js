@@ -33,7 +33,6 @@ export const MonthDateArray = (initialDate, locale, selectedDate) => {
                 objOfDate.style = 'style__3';
             }
        
-
              /*is after current month */
             if (isAfter(new Date(formattedDate), new Date(monthEnd))) {
                 objOfDate.style = 'style__1';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addMonths, format, subMonths } from 'date-fns';
+import { addMonths, format } from 'date-fns';
 import { CSSTransition } from "react-transition-group";
 
 import { DatepickerContainer, MonthContainer } from './datepicker.styles';
@@ -9,20 +9,18 @@ import DateOfMonth from '../date-of-month/date-of-month.component';
 
 import './datepicker.styles.css';
 
-const Datepicker = ({ initialDate, locale, daysLocale, onPickDate, selectedDate }) => {
-
-    const [ currentDate, setCurrentDate ] = useState(initialDate);
+const Datepicker = ({ initialDate, locale, daysLocale, onPickDate, selectedDate, handleNext, handlePrevious }) => {
 
     const [ appearLeft, setAppearLeft ] = useState(false);
     const [ appearRight, setAppearRight ] = useState(false);
 
     const handlePreviousMonth = () => {
-        setCurrentDate(subMonths(currentDate, 1));
+        handlePrevious();
         setAppearLeft(true);
     }
 
     const handleNextMonth = () => {
-        setCurrentDate(addMonths(currentDate, 1));
+        handleNext();
         setAppearRight(true);
     }
 
@@ -39,7 +37,7 @@ const Datepicker = ({ initialDate, locale, daysLocale, onPickDate, selectedDate 
         <DatepickerContainer>
             <MonthContainer>
                 <HeaderMonth
-                    monthYear={format(currentDate, 'MMMM yyyy', {locale: locale})}
+                    monthYear={format(initialDate, 'MMMM yyyy', {locale: locale})}
                     leftArrow={true}
                     handlePreviousMonth={handlePreviousMonth}
                     appearLeft={appearLeft}
@@ -58,7 +56,7 @@ const Datepicker = ({ initialDate, locale, daysLocale, onPickDate, selectedDate 
                 >
                     <DateOfMonth
                         locale={locale}
-                        initialDate={currentDate}
+                        initialDate={initialDate}
                         handlePickDate={handlePickDate}
                         selectedDate={selectedDate}
                     />
@@ -66,7 +64,7 @@ const Datepicker = ({ initialDate, locale, daysLocale, onPickDate, selectedDate 
             </MonthContainer>
             <MonthContainer>
                 <HeaderMonth
-                    monthYear={format(addMonths(currentDate, 1), 'MMMM yyyy', {locale: locale})}
+                    monthYear={format(addMonths(initialDate, 1), 'MMMM yyyy', {locale: locale})}
                     rightArrow={true}
                     handleNextMonth={handleNextMonth}
                     appearLeft={appearLeft}
@@ -84,7 +82,7 @@ const Datepicker = ({ initialDate, locale, daysLocale, onPickDate, selectedDate 
                 >
                     <DateOfMonth
                         locale={locale}
-                        initialDate={addMonths(currentDate, 1)}
+                        initialDate={addMonths(initialDate, 1)}
                         handlePickDate={handlePickDate}
                         selectedDate={selectedDate}
                     />

@@ -1,7 +1,7 @@
 import React,{ useState } from 'react';
 import { id } from 'date-fns/locale';
 import locale from 'date-fns/esm/locale/id';
-import { format } from 'date-fns';
+import { format, subMonths, addMonths } from 'date-fns';
 
 import './App.css';
 
@@ -9,19 +9,33 @@ import Input from './components/input/input.component';
 import Datepicker from './components/datepicker/datepicker.component';
 
 function App() {
+  const timeout = 500;
   const [ showPanel, setShowPanel ] = useState(false);
   const [ initialDate, setInitialDate ] = useState(new Date());
   const [ selectedDate, setSelectedDate ] = useState(new Date());  
 
   const handleClick = () => {
     setShowPanel(!showPanel);
+    setTimeout(() => {
+      setInitialDate(new Date(selectedDate));
+    }, timeout);
   }
 
   const handlePickDate = (date) => {
-    const pickDate = format(new Date(date), 'dd-MMMM-yyyy', { locale : id });
-    setSelectedDate(format(new Date(date), 'MM-dd-yy', { locale : id }));
-    setInitialDate(pickDate);
+    const pickDate = format(new Date(date), 'MM-dd-yy', { locale : id });
+    setSelectedDate(pickDate);
+    setTimeout(() => {
+      setInitialDate(new Date(date));
+    }, timeout);
     setShowPanel(!showPanel);
+  }
+
+  const handleNextSlideMonth = () => {
+    setInitialDate(addMonths(initialDate, 1));
+  }
+
+  const handlePreviousSlideMonth = () => {
+    setInitialDate(subMonths(initialDate, 1));
   }
 
   return (
@@ -38,6 +52,8 @@ function App() {
             locale={id}
             daysLocale={locale}
             onPickDate={handlePickDate}
+            handleNext={handleNextSlideMonth}
+            handlePrevious={handlePreviousSlideMonth}
           />
         </div>     
       </div>
