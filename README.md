@@ -1,1 +1,1 @@
-Simple react datepicker for flight needed.
+Simple datepicker created with react and styled components for flight application needs.
