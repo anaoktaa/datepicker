@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { id } from 'date-fns/locale';
 import locale from 'date-fns/esm/locale/id';
 import { format, subMonths, addMonths } from 'date-fns';
@@ -10,6 +10,7 @@ import Datepicker from './components/datepicker/datepicker.component';
 
 function App() {
   const timeout = 500;
+  const ref = useRef(null);
   const [ showPanel, setShowPanel ] = useState(false);
   const [ initialDate, setInitialDate ] = useState(new Date());
   const [ selectedDate, setSelectedDate ] = useState(new Date());  
@@ -37,10 +38,22 @@ function App() {
   const handlePreviousSlideMonth = () => {
     setInitialDate(subMonths(initialDate, 1));
   }
+  const handleClickOutside = event => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setShowPanel(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  });
 
   return (
     <div className='App'>
-     <div className='datepicker-app-container'>
+     <div className='datepicker-app-container' ref={ref}>
         <Input
           handleClick={handleClick}
           value={format(new Date(selectedDate), 'dd MMMM yyyy', { locale : id })}
