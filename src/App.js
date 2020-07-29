@@ -78,7 +78,7 @@ function App() {
               handleCancel={handleCancel}
           />
         </div>
-        {/* <div className={`${showPanel? `slide-panel`: ``} show-panel`}>
+        <div className={`${showPanel? `slide-panel`: ``} show-panel`}>
           <Datepicker
             initialDate={initialDate}
             selectedDate={selectedDate}
@@ -88,7 +88,7 @@ function App() {
             handleNext={handleNextSlideMonth}
             handlePrevious={handlePreviousSlideMonth}
           />
-        </div>      */}
+        </div>     
       </div>
     </div>
   );

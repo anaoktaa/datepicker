@@ -39,7 +39,7 @@ const FullScreenDatepicker = ({ initialDate, locale, handleCancel, onPickDate, s
                 <HeaderTitleText>
                     React Datepicker
                 </HeaderTitleText>
-                <i onClick={handleCancel} class="fas fa-times" style={{color: 'white', fontSize: '18px'}}></i>
+                <i onClick={handleCancel} class="fas fa-times" style={{color: 'white', fontSize: '18px', cursor: 'pointer'}}></i>
             </Header>
             <MonthContainer>
                 <HeaderMonth
