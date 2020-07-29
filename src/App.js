@@ -7,6 +7,7 @@ import './App.css';
 
 import Input from './components/input/input.component';
 import Datepicker from './components/datepicker/datepicker.component';
+import FullScreenDatepicker from './components/full-screen-datepicker/full-screen-datepicker.component';
 
 function App() {
   const timeout = 500;
@@ -20,6 +21,10 @@ function App() {
     setTimeout(() => {
       setInitialDate(new Date(selectedDate));
     }, timeout);
+  }
+
+  const handleCancel = () => {
+    setShowPanel(!showPanel);
   }
 
   const handlePickDate = (date) => {
@@ -41,6 +46,9 @@ function App() {
   const handleClickOutside = event => {
     if (ref.current && !ref.current.contains(event.target)) {
       setShowPanel(false);
+      setTimeout(() => {
+        setInitialDate(new Date(selectedDate));
+      }, timeout);
     }
   };
 
@@ -58,7 +66,19 @@ function App() {
           handleClick={handleClick}
           value={format(new Date(selectedDate), 'dd MMMM yyyy', { locale : id })}
         />
-        <div className={`${showPanel? `slide-panel`: ``} show-panel`}>
+        <div className={`${showPanel? `show`: ``} full-screen-panel `}>
+          <FullScreenDatepicker
+              initialDate={initialDate}
+              selectedDate={selectedDate}
+              locale={id}
+              daysLocale={locale}
+              onPickDate={handlePickDate}
+              handleNext={handleNextSlideMonth}
+              handlePrevious={handlePreviousSlideMonth}
+              handleCancel={handleCancel}
+          />
+        </div>
+        {/* <div className={`${showPanel? `slide-panel`: ``} show-panel`}>
           <Datepicker
             initialDate={initialDate}
             selectedDate={selectedDate}
@@ -68,7 +88,7 @@ function App() {
             handleNext={handleNextSlideMonth}
             handlePrevious={handlePreviousSlideMonth}
           />
-        </div>     
+        </div>      */}
       </div>
     </div>
   );

@@ -55,3 +55,12 @@
   opacity: 1;
   transform: translateY(-30px);
 }
+
+.full-screen-panel {
+  transform: translateY(-40px);
+  transition: all .6s;
+}
+
+.full-screen-show {
+  transform: translateY(0);
+}

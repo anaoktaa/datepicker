@@ -1,0 +1,15 @@
+.full-screen-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -200px;
+    z-index: 1101;
+    background-color: white;
+    transition: all .6s;
+    transform: translateY(100%);
+}
+
+.show {
+    transform: none;
+}
