@@ -1,0 +1,25 @@
+/* This fires as soon as the element enters the dorm */
+.list-transition-left-enter,
+.list-transition-left-appear {
+  transform: translateX(-40%);
+}
+/* This is where we can add the transition*/
+
+.list-transition-left-enter-active,
+.list-transition-left-appear-active {
+  transform: translateX(0);
+  transition: all 100ms;
+}
+
+/* This fires as soon as the element enters the dorm */
+.list-transition-right-enter,
+.list-transition-right-appear {
+  /*We give the list the initial dimension of the list button*/
+  transform: translateX(40%);
+}
+/* This is where we can add the transition*/
+.list-transition-right-enter-active,
+.list-transition-right-appear-active {
+  transform: translateX(0);
+  transition: all 100ms;
+}

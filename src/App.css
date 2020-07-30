@@ -39,7 +39,6 @@
 }
 
 .datepicker-app-container {
-  position: relative;
   width: 245px;
 }
 
@@ -48,12 +47,6 @@
   transform: translateY(-50px);
   transition: all .5s;
   opacity: 0;
-}
-
-@media screen and (max-width: 768px) {
-  .show-panel {
-    display: none;
-  }
 }
 
 .slide-panel {
@@ -76,7 +69,6 @@
   left: 0;
   right: 0;
   bottom: -200px;
-  z-index: 1101;
   background-color: white;
   transition: all .6s;
   transform: translateY(100%);
@@ -84,11 +76,4 @@
 
 .show {
   transform: none;
-}
-
-@media screen and (min-width: 769px) {
-  .full-screen-panel {
-      display: none;
-  }
-  
 }

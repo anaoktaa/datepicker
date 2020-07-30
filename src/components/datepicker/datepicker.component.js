@@ -1,95 +1,123 @@
-import React, { useState } from 'react';
-import { addMonths, format } from 'date-fns';
-import { CSSTransition } from "react-transition-group";
+import React, { useState, useRef, useEffect } from 'react';
+import { format, subMonths, addMonths } from 'date-fns';
+import PropTypes from 'prop-types';
+import { id } from 'date-fns/locale';
+import locale from 'date-fns/esm/locale/id';
 
-import { DatepickerContainer, MonthContainer } from './datepicker.styles';
-import HeaderMonth from '../header-month/header-month.component';
-import WeekdaysName from '../weekdays-name/weekdays-name.component';
-import DateOfMonth from '../date-of-month/date-of-month.component';
+import Input from '../input/input.component';
+import RegularDatepicker from '../regular-datepicker/regular-datepicker.component';
+import FullScreenDatepicker from '../full-screen-datepicker/full-screen-datepicker.component';
 
-import './datepicker.styles.css';
-
-const Datepicker = ({ initialDate, locale, daysLocale, onPickDate, selectedDate, handleNext, handlePrevious }) => {
-
-    const [ appearLeft, setAppearLeft ] = useState(false);
-    const [ appearRight, setAppearRight ] = useState(false);
-
-    const handlePreviousMonth = () => {
-        handlePrevious();
-        setAppearLeft(true);
+const Datepicker = ({ selectedDate, locale, localeDate, onPickDate, type }) => {
+    const timeout = 500;
+    const ref = useRef(null);
+    const [ showPanel, setShowPanel ] = useState(false);
+    const [ defaultDate, setDefaultDate ] = useState(new Date(selectedDate));
+    const [ datePick, setDatePick ] = useState(new Date(selectedDate));  
+  
+    const handleClick = () => {
+        setShowPanel(!showPanel);
+        setTimeout(() => {
+            setDefaultDate(new Date(datePick));
+        }, timeout);
     }
-
-    const handleNextMonth = () => {
-        handleNext();
-        setAppearRight(true);
+  
+    const handleCancel = () => {
+      setShowPanel(!showPanel);
     }
-
-    const handleEntered = () => {
-        setAppearLeft(false);
-        setAppearRight(false);
-    }
-
+  
     const handlePickDate = (date) => {
-        onPickDate(date);
+        // const pickDate = format(new Date(date), 'MM-dd-yy', { locale : locale });
+        setDatePick(new Date(date));
+        onPickDate(new Date(date));
+        setTimeout(() => {
+            setDefaultDate(new Date(date));
+        }, timeout);
+        setShowPanel(!showPanel);
     }
+  
+    const handleNextSlideMonth = () => {
+        setDefaultDate(addMonths(defaultDate, 1));
+    }
+  
+    const handlePreviousSlideMonth = () => {
+        setDefaultDate(subMonths(defaultDate, 1));
+    }
+    const handleClickOutside = event => {
+        if (ref.current && !ref.current.contains(event.target)) {
+            setShowPanel(false);
+            setTimeout(() => {
+            setDefaultDate(new Date(datePick));
+            }, timeout);
+        }
+    };
+  
+    useEffect(() => {
+        document.addEventListener("click", handleClickOutside, true);
+        return () => {
+            document.removeEventListener("click", handleClickOutside, true);
+        };
+    });
 
-    return (
-        <DatepickerContainer>
-            <MonthContainer>
-                <HeaderMonth
-                    monthYear={format(initialDate, 'MMMM yyyy', {locale: locale})}
-                    leftArrow={true}
-                    handlePreviousMonth={handlePreviousMonth}
-                    appearLeft={appearLeft}
-                    appearRight={appearRight}
-                    handleEntered={handleEntered}
-                />           
-                <WeekdaysName
-                        daysLocale={daysLocale}
+    if (type === 'regular') {
+        return (
+ 
+            <div className='datepicker-app-container' ref={ref} >
+                <Input
+                    handleClick={handleClick}
+                    value={format(new Date(selectedDate), 'dd MMMM yyyy', { locale : locale })}
                 />
+                <div className={`${showPanel? `slide-panel`: ``} show-panel`}>
+                    <RegularDatepicker
+                        initialDate={defaultDate}
+                        selectedDate={datePick}
+                        locale={locale}
+                        daysLocale={localeDate}
+                        onPickDate={handlePickDate}
+                        handleNext={handleNextSlideMonth}
+                        handlePrevious={handlePreviousSlideMonth}
+                    
+                    />
+                </div>  
+            </div>
+    
+        )
+    }
+    else if (type === 'full-screen') {
+        return (
+            <div className='datepicker-app-container' ref={ref} >
+                <Input
+                    handleClick={handleClick}
+                    value={format(new Date(selectedDate), 'dd MMMM yyyy', { locale : locale })}
+                />
+                <div className={`${showPanel? `show`: ``} full-screen-panel `}>
+                    <FullScreenDatepicker
+                        initialDate={defaultDate}
+                        selectedDate={datePick}
+                        locale={locale}
+                        daysLocale={localeDate}
+                        onPickDate={handlePickDate}
+                        handleNext={handleNextSlideMonth}
+                        handlePrevious={handlePreviousSlideMonth}
+                        handleCancel={handleCancel}
+                    />
+                </div>
+           </div>
+        )
+    }
+    return <div/>
 
-                <CSSTransition
-                    in={appearLeft || appearRight}
-                    timeout={100}
-                    classNames={appearLeft? 'list-transition-left': 'list-transition-right'}
-                    onEntered={handleEntered}
-                >
-                    <DateOfMonth
-                        locale={locale}
-                        initialDate={initialDate}
-                        handlePickDate={handlePickDate}
-                        selectedDate={selectedDate}
-                    />
-                </CSSTransition>
-            </MonthContainer>
-            <MonthContainer>
-                <HeaderMonth
-                    monthYear={format(addMonths(initialDate, 1), 'MMMM yyyy', {locale: locale})}
-                    rightArrow={true}
-                    handleNextMonth={handleNextMonth}
-                    appearLeft={appearLeft}
-                    appearRight={appearRight}
-                    handleEntered={handleEntered}
-                />
-                <WeekdaysName
-                    daysLocale={daysLocale}
-                />
-                <CSSTransition
-                    in={appearLeft || appearRight}
-                    timeout={100}
-                    classNames={appearLeft? 'list-transition-left': 'list-transition-right'}
-                    onEntered={handleEntered}
-                >
-                    <DateOfMonth
-                        locale={locale}
-                        initialDate={addMonths(initialDate, 1)}
-                        handlePickDate={handlePickDate}
-                        selectedDate={selectedDate}
-                    />
-                </CSSTransition>
-            </MonthContainer>
-        </DatepickerContainer>
-    )
 };
 
 export default Datepicker;
+
+Datepicker.propTypes = {
+    onPickDate: PropTypes.func.isRequired,
+    selectedDate: PropTypes.instanceOf(Date).isRequired,
+    type: PropTypes.oneOf(['full-screen', 'regular']),
+};
+
+Datepicker.defaultProps = {
+    locale: id,
+    localeDate: locale
+};
