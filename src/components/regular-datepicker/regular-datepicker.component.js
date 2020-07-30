@@ -9,7 +9,8 @@ import DateOfMonth from '../date-of-month/date-of-month.component';
 
 import './regular-datepicker.styles.css';
 
-const RegularDatepicker = ({ initialDate, locale, daysLocale, onPickDate, selectedDate, handleNext, handlePrevious }) => {
+const RegularDatepicker = ({ initialDate, locale, daysLocale, onPickDate, 
+                selectedDate, handleNext, handlePrevious, selectedColor }) => {
 
     const [ appearLeft, setAppearLeft ] = useState(false);
     const [ appearRight, setAppearRight ] = useState(false);
@@ -33,6 +34,8 @@ const RegularDatepicker = ({ initialDate, locale, daysLocale, onPickDate, select
         onPickDate(date);
     }
 
+    console.log("SELECTED COLOR", selectedColor);
+
     return (
         <DatepickerContainer>
             <MonthContainer>
@@ -55,6 +58,7 @@ const RegularDatepicker = ({ initialDate, locale, daysLocale, onPickDate, select
                     onEntered={handleEntered}
                 >
                     <DateOfMonth
+                        selectedColor={selectedColor}
                         locale={locale}
                         initialDate={initialDate}
                         handlePickDate={handlePickDate}
@@ -81,6 +85,7 @@ const RegularDatepicker = ({ initialDate, locale, daysLocale, onPickDate, select
                     onEntered={handleEntered}
                 >
                     <DateOfMonth
+                        selectedColor={selectedColor}
                         locale={locale}
                         initialDate={addMonths(initialDate, 1)}
                         handlePickDate={handlePickDate}

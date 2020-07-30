@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const DatepickerContainer = styled.div`
     position: absolute;
+    min-width: 800px;
     overflow: hidden;
     top: 50px;
     left: 0;

@@ -3,11 +3,12 @@ import styled from 'styled-components';
 export const FullScreenDatepickerContainer = styled.div`
     margin: 0;
     background-color: white;
+    min-width: 300px;
 `;
 
 export const Header = styled.div`
     height: 70px;
-    background-color: #7cc33b;
+    background-color: ${(({selectedColor}) => selectedColor)};
     width: 100%;
     box-sizing: border-box;
     padding: 0px 20px;

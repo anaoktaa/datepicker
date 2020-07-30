@@ -10,7 +10,8 @@ import { FullScreenDatepickerContainer, Header, HeaderTitleText,
          MonthContainer, DateContainer } from './full-screen-datepicker.styles';
 import './full-screen-datepicker.styles.css';
 
-const FullScreenDatepicker = ({ initialDate, locale, handleCancel, onPickDate, selectedDate, handleNext, handlePrevious }) => {
+const FullScreenDatepicker = ({ initialDate, locale, handleCancel, title,
+    onPickDate, selectedDate, handleNext, handlePrevious, selectedColor }) => {
     const [ appearLeft, setAppearLeft ] = useState(false);
     const [ appearRight, setAppearRight ] = useState(false);
 
@@ -35,9 +36,9 @@ const FullScreenDatepicker = ({ initialDate, locale, handleCancel, onPickDate, s
 
     return (
         <FullScreenDatepickerContainer>
-            <Header>
+            <Header selectedColor={selectedColor}>
                 <HeaderTitleText>
-                    React Datepicker
+                    {title}
                 </HeaderTitleText>
                 <i onClick={handleCancel} class="fas fa-times" style={{color: 'white', fontSize: '18px', cursor: 'pointer'}}></i>
             </Header>
@@ -64,6 +65,7 @@ const FullScreenDatepicker = ({ initialDate, locale, handleCancel, onPickDate, s
                     onEntered={handleEntered}
                 >
                     <DateOfMonth
+                        selectedColor={selectedColor}
                         locale={locale}
                         initialDate={initialDate}
                         handlePickDate={handlePickDate}

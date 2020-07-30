@@ -8,7 +8,7 @@ import Input from '../input/input.component';
 import RegularDatepicker from '../regular-datepicker/regular-datepicker.component';
 import FullScreenDatepicker from '../full-screen-datepicker/full-screen-datepicker.component';
 
-const Datepicker = ({ selectedDate, locale, localeDate, onPickDate, type }) => {
+const Datepicker = ({ selectedDate, locale, localeDate, onPickDate, type, selectedColor, title }) => {
     const timeout = 500;
     const ref = useRef(null);
     const [ showPanel, setShowPanel ] = useState(false);
@@ -69,6 +69,7 @@ const Datepicker = ({ selectedDate, locale, localeDate, onPickDate, type }) => {
                 />
                 <div className={`${showPanel? `slide-panel`: ``} show-panel`}>
                     <RegularDatepicker
+                        selectedColor={selectedColor}
                         initialDate={defaultDate}
                         selectedDate={datePick}
                         locale={locale}
@@ -92,6 +93,8 @@ const Datepicker = ({ selectedDate, locale, localeDate, onPickDate, type }) => {
                 />
                 <div className={`${showPanel? `show`: ``} full-screen-panel `}>
                     <FullScreenDatepicker
+                        title={title}
+                        selectedColor={selectedColor}
                         initialDate={defaultDate}
                         selectedDate={datePick}
                         locale={locale}
@@ -115,9 +118,13 @@ Datepicker.propTypes = {
     onPickDate: PropTypes.func.isRequired,
     selectedDate: PropTypes.instanceOf(Date).isRequired,
     type: PropTypes.oneOf(['full-screen', 'regular']),
+    selectedColor: PropTypes.string,
+    title: PropTypes.string
 };
 
 Datepicker.defaultProps = {
     locale: id,
-    localeDate: locale
+    localeDate: locale,
+    selectedColor: '#7cc33b',
+    title: 'Datepicker'
 };

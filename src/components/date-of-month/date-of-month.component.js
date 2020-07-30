@@ -3,7 +3,7 @@ import { getDate, isSunday, isBefore, subDays } from 'date-fns';
 
 import { DaysNameContainer, DaysName } from './date-of-month.styles';
 import { MonthDateArray } from './date-of-month.utils';
-const DateOfMonth = ({ locale, initialDate, handlePickDate, selectedDate }) => {
+const DateOfMonth = ({ locale, initialDate, handlePickDate, selectedDate, selectedColor }) => {
     const monthDateList = MonthDateArray(initialDate, locale, selectedDate);
 
     const onPickDate = (date) => {
@@ -19,7 +19,7 @@ const DateOfMonth = ({ locale, initialDate, handlePickDate, selectedDate }) => {
                             {
                                 week.map((day) => {
                                     return (
-                                        <DaysName onClick={() => onPickDate(day.date)}  key={day.date} isHoliday={isSunday(new Date(day.date))} dateStyle={day.style}>{getDate(new Date(day.date))}</DaysName>
+                                        <DaysName selectedColor={selectedColor} onClick={() => onPickDate(day.date)}  key={day.date} isHoliday={isSunday(new Date(day.date))} dateStyle={day.style}>{getDate(new Date(day.date))}</DaysName>
                                     )
                                 })
                             }

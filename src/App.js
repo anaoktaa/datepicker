@@ -7,7 +7,7 @@ import './App.css';
 import Datepicker from './components/datepicker/datepicker.component';
 
 function App() {
-  const [ selectedDate, setSelectedDate ] = useState( new Date('09-09-2020'));  
+  const [ selectedDate, setSelectedDate ] = useState( new Date());  
   const [ selectedDateRegular, setSelectedDateRegular ] = useState( new Date('09-09-2020'));  
 
   const handlePickDate = (date) => {
@@ -28,14 +28,15 @@ function App() {
         localeDate={locale}
         onPickDate={handlePickDate}
         type='full-screen'
+        selectedColor='#987df5'
+        title='Calendar'
       />
       <br/>
       <Datepicker
         selectedDate={selectedDateRegular}
-        // locale={id}
-        // localeDate={locale}
         onPickDate={handlePickDateRegular}
         type='regular'
+        selectedColor='#f16969'
       />    
     </div>
   );

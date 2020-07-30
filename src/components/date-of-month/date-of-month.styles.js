@@ -33,11 +33,11 @@ const Style2 = css`
 const Style3 = css`
     ${DaysTextStyle};
     color: white;
-    background-color: #7cc33b;
+    background-color:  ${(({selectedColor}) => selectedColor)};
     box-sizing: border-box;
     border-radius: 5px;
     font-weight: bold;
-    box-shadow: rgb(114 239 0) 5px 3px 16px -3px;
+    box-shadow: ${(({selectedColor}) => selectedColor)} 5px 3px 16px -3px;
     cursor: pointer;
 `;
 
