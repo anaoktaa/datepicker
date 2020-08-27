@@ -32,6 +32,8 @@ $ npm start
 ## Usage
 
 ```jsx
+import { enUS } from 'date-fns/locale';
+import locale from 'date-fns/esm/locale/en-US';
 
 function MyApp() {
   return (
