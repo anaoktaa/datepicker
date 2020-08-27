@@ -23,7 +23,7 @@ $ npm start
 - `type => string`
   - Type of datepicker : regular & full-screen
 - `locale`
-  - Supports the use of languages using [date-fns] (https://date-fns.org/v1.9.0/docs/I18n) , default id (Indonesia)
+  - Supports the use of languages using [date-fns] (https://date-fns.org/v2.0.0-alpha.9/docs/I18n) , default id (Indonesia)
 - `selectedColor => string`
   - Color of datepicker when the date selected, default color #7cc33b
 - `title => string`
