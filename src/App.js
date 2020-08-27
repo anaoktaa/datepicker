@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { enUS } from 'date-fns/locale';
-import locale from 'date-fns/esm/locale/en-US';
 
 import './App.css';
 
@@ -25,7 +24,6 @@ function App() {
       <Datepicker
         selectedDate={selectedDate}
         locale={enUS}
-        localeDate={locale}
         onPickDate={handlePickDate}
         type='full-screen'
         selectedColor='#987df5'

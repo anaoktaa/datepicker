@@ -2,13 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { format, subMonths, addMonths } from 'date-fns';
 import PropTypes from 'prop-types';
 import { id } from 'date-fns/locale';
-import locale from 'date-fns/esm/locale/id';
 
 import Input from '../input/input.component';
 import RegularDatepicker from '../regular-datepicker/regular-datepicker.component';
 import FullScreenDatepicker from '../full-screen-datepicker/full-screen-datepicker.component';
 
-const Datepicker = ({ selectedDate, locale, localeDate, onPickDate, type, selectedColor, title }) => {
+const Datepicker = ({ selectedDate, locale, onPickDate, type, selectedColor, title }) => {
     const timeout = 500;
     const ref = useRef(null);
     const [ showPanel, setShowPanel ] = useState(false);
@@ -73,7 +72,6 @@ const Datepicker = ({ selectedDate, locale, localeDate, onPickDate, type, select
                         initialDate={defaultDate}
                         selectedDate={datePick}
                         locale={locale}
-                        daysLocale={localeDate}
                         onPickDate={handlePickDate}
                         handleNext={handleNextSlideMonth}
                         handlePrevious={handlePreviousSlideMonth}
@@ -98,7 +96,6 @@ const Datepicker = ({ selectedDate, locale, localeDate, onPickDate, type, select
                         initialDate={defaultDate}
                         selectedDate={datePick}
                         locale={locale}
-                        daysLocale={localeDate}
                         onPickDate={handlePickDate}
                         handleNext={handleNextSlideMonth}
                         handlePrevious={handlePreviousSlideMonth}
@@ -124,7 +121,6 @@ Datepicker.propTypes = {
 
 Datepicker.defaultProps = {
     locale: id,
-    localeDate: locale,
     selectedColor: '#7cc33b',
     title: 'Datepicker'
 };

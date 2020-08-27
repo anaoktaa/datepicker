@@ -7,7 +7,7 @@ React datepicker is an awesome customizable datepicker component build using Rea
 </p>
 
 
-## Usage
+## Installation
 
 ```bash
 $ npm install
@@ -23,10 +23,10 @@ $ npm start
 - `type => string`
   - Type of datepicker : regular & full-screen
 - `locale`
-  - Select language from date-fns/locale, default id (Indonesia) 
-- selectedColor => string
-  - Color of datepicker when date is selected, default color #7cc33b
-- title => string
+  - Supports the use of languages using date-fns, default id (Indonesia)
+- `selectedColor => string`
+  - Color of datepicker when the date selected, default color #7cc33b
+- `title => string`
   - If type is full-screen, title of datepicker can changes with this properties, default 'datepicker'
 
 ## Usage

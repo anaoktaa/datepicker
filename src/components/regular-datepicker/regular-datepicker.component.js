@@ -9,7 +9,7 @@ import DateOfMonth from '../date-of-month/date-of-month.component';
 
 import './regular-datepicker.styles.css';
 
-const RegularDatepicker = ({ initialDate, locale, daysLocale, onPickDate, 
+const RegularDatepicker = ({ initialDate, locale, onPickDate, 
                 selectedDate, handleNext, handlePrevious, selectedColor }) => {
 
     const [ appearLeft, setAppearLeft ] = useState(false);
@@ -46,7 +46,7 @@ const RegularDatepicker = ({ initialDate, locale, daysLocale, onPickDate,
                     handleEntered={handleEntered}
                 />           
                 <WeekdaysName
-                        daysLocale={daysLocale}
+                        daysLocale={locale}
                 />
 
                 <CSSTransition
@@ -74,7 +74,7 @@ const RegularDatepicker = ({ initialDate, locale, daysLocale, onPickDate,
                     handleEntered={handleEntered}
                 />
                 <WeekdaysName
-                    daysLocale={daysLocale}
+                    daysLocale={locale}
                 />
                 <CSSTransition
                     in={appearLeft || appearRight}
