@@ -33,7 +33,6 @@ $ npm start
 
 ```jsx
 import { enUS } from 'date-fns/locale';
-import locale from 'date-fns/esm/locale/en-US';
 
 function MyApp() {
   return (
@@ -41,7 +40,6 @@ function MyApp() {
         <Datepicker
             selectedDate={selectedDate}
             locale={enUS}
-            localeDate={locale}
             onPickDate={handlePickDate}
             type='full-screen'
             selectedColor='#987df5'
