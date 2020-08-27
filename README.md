@@ -23,7 +23,7 @@ $ npm start
 - `type => string`
   - Type of datepicker : regular & full-screen
 - `locale`
-  - Supports the use of languages using date-fns, default id (Indonesia)
+  - Supports the use of languages using [date-fns] (https://date-fns.org/v1.9.0/docs/I18n) , default id (Indonesia)
 - `selectedColor => string`
   - Color of datepicker when the date selected, default color #7cc33b
 - `title => string`
@@ -32,27 +32,47 @@ $ npm start
 ## Usage
 
 ```jsx
+import React, { useState } from 'react';
 import { enUS } from 'date-fns/locale';
 
-function MyApp() {
+import './App.css';
+
+import Datepicker from './components/datepicker/datepicker.component';
+
+function App() {
+  const [ selectedDate, setSelectedDate ] = useState( new Date());  
+  const [ selectedDateRegular, setSelectedDateRegular ] = useState( new Date('09-09-2020'));  
+
+  const handlePickDate = (date) => {
+    console.log("DATE", date);
+    setSelectedDate(date);
+  }
+
+  const handlePickDateRegular = (date) => {
+    console.log("DATE", date);
+    setSelectedDateRegular(date);
+  }
+
   return (
-    <div className="App">
-        <Datepicker
-            selectedDate={selectedDate}
-            locale={enUS}
-            onPickDate={handlePickDate}
-            type='full-screen'
-            selectedColor='#987df5'
-            title='Calendar'
-        />
-        <br/>
-        <Datepicker
-            selectedDate={selectedDateRegular}
-            onPickDate={handlePickDateRegular}
-            type='regular'
-            selectedColor='#f16969'
-        /> 
+    <div className='App'>
+      <Datepicker
+        selectedDate={selectedDate}
+        locale={enUS}
+        onPickDate={handlePickDate}
+        type='full-screen'
+        selectedColor='#987df5'
+        title='Calendar'
+      />
+      <br/>
+      <Datepicker
+        selectedDate={selectedDateRegular}
+        onPickDate={handlePickDateRegular}
+        type='regular'
+        selectedColor='#f16969'
+      />    
     </div>
   );
 }
+
+export default App;
 ```
