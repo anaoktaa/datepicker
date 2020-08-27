@@ -34,8 +34,6 @@ const RegularDatepicker = ({ initialDate, locale, daysLocale, onPickDate,
         onPickDate(date);
     }
 
-    console.log("SELECTED COLOR", selectedColor);
-
     return (
         <DatepickerContainer>
             <MonthContainer>

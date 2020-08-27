@@ -16,42 +16,43 @@ $ npm start
 
 ## Available Props
 
-- `value`
-  - A date object, default value is `today`
-- `onChange(date) => void`
+- `selectedDate => date`
+  - Selected date when first render (mandatory).
+- `onPickDate(date) => void`
   - Function where the callback is selected date
-- `customColor` an object which the value is one of these
-  - `selected_date`: `{ bgColor: string; textColor: string };`
-    - Default value is: `{ textColor: '#000', bgColor: '#fff' }`
-  - `date`: `{ bgColor: string; textColor: string };`
-    - Default value is: `{ textColor: '#000', bgColor: '#fff' }`
-  - `month`: `{ bgColor: string; textColor: string };`
-    - Default value is: `{ textColor: '#fff', bgColor: '#2196f3' }`
-  - `year`: `{ bgColor: string; textColor: string };`
-    - Default value is: `{ textColor: '#fff', bgColor: '#39373A' }`
+- `type => string`
+  - Type of datepicker : regular & full-screen
+- `locale`
+  - Select language from date-fns/locale, default id (Indonesia) 
+- selectedColor => string
+  - Color of datepicker when date is selected, default color #7cc33b
+- title => string
+  - If type is full-screen, title of datepicker can changes with this properties, default 'datepicker'
 
 ## Usage
 
 ```jsx
-import React from 'react';
-import { Datepicker } from '@adibfirman/datepicker';
 
 function MyApp() {
   return (
     <div className="App">
-      <h1>Hello World</h1>
-      <Datepicker />
+        <Datepicker
+            selectedDate={selectedDate}
+            locale={enUS}
+            localeDate={locale}
+            onPickDate={handlePickDate}
+            type='full-screen'
+            selectedColor='#987df5'
+            title='Calendar'
+        />
+        <br/>
+        <Datepicker
+            selectedDate={selectedDateRegular}
+            onPickDate={handlePickDateRegular}
+            type='regular'
+            selectedColor='#f16969'
+        /> 
     </div>
   );
 }
 ```
-
-## Contribute & Help
-
-- Fork and send Pull Requests are welcome
-- Submit an issues
-- A new feature requests
-
-## License
-
-This library is [MIT licensed](https://github.com/adibfirman/react-datepicker/blob/master/LICENSE)
